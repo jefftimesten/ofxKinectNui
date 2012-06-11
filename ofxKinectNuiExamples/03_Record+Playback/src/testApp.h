@@ -14,6 +14,9 @@
 
 #include "ofxKinectNui.h"
 #include "ofMain.h"
+#include "ofxKinectNuiPlayer.h"
+#include "ofxKinectNuiRecorder.h"
+
 
 class testApp : public ofBaseApp {
 	public:
@@ -23,7 +26,7 @@ class testApp : public ofBaseApp {
 		void draw();
 		void drawSkeleton(const ofPoint* src);
 		void exit();
-
+		
 
 		void keyPressed  (int key);
 		void mouseMoved(int x, int y );
@@ -33,16 +36,27 @@ class testApp : public ofBaseApp {
 		void windowResized(int w, int h);
 		void kinectPlugged();
 		void kinectUnplugged();
+		
+		void startRecording();
+		void stopRecording();
+		void startPlayback();
+		void stopPlayback();
 
 		ofxKinectNui kinect;
+		ofxKinectNuiPlayer kinectPlayer;
+		ofxBase3DVideo* kinectSource;
+
+		ofxKinectNuiRecorder kinectRecorder;
 		
+		bool bRecord;
+		bool bPlayback;
 		bool bPlugged;
 		bool bUnplugged;
 		
 		unsigned short nearClipping;
 		unsigned short farClipping;
 		int angle;
-
+	
 		ofTexture labels;
 		ofTexture depth;
 		ofTexture video;

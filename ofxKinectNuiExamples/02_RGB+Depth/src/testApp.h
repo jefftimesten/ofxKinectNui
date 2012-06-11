@@ -21,9 +21,15 @@ class testApp : public ofBaseApp {
 		void setup();
 		void update();
 		void draw();
-		void drawSkeleton(const ofPoint* src);
-		void exit();
 
+		/**
+		 * @brief	example for adjusting video images to depth images
+		 * @note	inspired by akira's video http://vimeo.com/17146552
+		 */
+		void drawCalibratedTexture();
+		void exit();
+		void drawCircle3f(int n, int radius, ofVec3f cur);
+		
 
 		void keyPressed  (int key);
 		void mouseMoved(int x, int y );
@@ -35,17 +41,18 @@ class testApp : public ofBaseApp {
 		void kinectUnplugged();
 
 		ofxKinectNui kinect;
-		
+
 		bool bPlugged;
 		bool bUnplugged;
 		
 		unsigned short nearClipping;
 		unsigned short farClipping;
 		int angle;
+		
+		int mRotationX, mRotationY;
 
 		ofTexture labels;
 		ofTexture depth;
 		ofTexture video;
 		ofTexture calibratedVideo;
-		const ofPoint* skeletonPoints[kinect::nui::SkeletonFrame::SKELETON_COUNT];
 };
