@@ -1,5 +1,5 @@
 #include "ofxKinectNui.h"
-#include "ofxKinectNuiDraw.h"
+
 
 const UINT color[ofxKinectNui::KINECT_PLAYERS_INDEX_NUM] = {
 	0x00FFFFFF,	/// no user
@@ -28,11 +28,6 @@ ofxKinectNui::ofxKinectNui(){
 	bIsFrameNew = false;
 	labelPixelsCv = NULL;
 	updateFlagDefault_ = UPDATE_FLAG_NONE;
-
-	videoDraw_ = NULL;
-	depthDraw_ = NULL;
-	labelDraw_ = NULL;
-	skeletonDraw_ = NULL;
 
 	addKinectListener(this, &ofxKinectNui::pluggedFunc, &ofxKinectNui::unpluggedFunc);
 }
@@ -319,19 +314,6 @@ bool ofxKinectNui::open(bool nearmode /*= false */){
 	return false;
 }
 
-void ofxKinectNui::setVideoDrawer(IDrawPixels* drawer){
-	videoDraw_ = drawer;
-}
-void ofxKinectNui::setDepthDrawer(IDrawPixels* drawer){
-	depthDraw_ = drawer;
-}
-void ofxKinectNui::setLabelDrawer(IDrawPixels* drawer){
-	labelDraw_ = drawer;
-}
-
-void ofxKinectNui::setSkeletonDrawer(IDrawPoints* drawer){
-	skeletonDraw_ = drawer;
-}
 
 //---------------------------------------------------------------------------
 /**
@@ -391,9 +373,7 @@ void ofxKinectNui::update(UINT flag){
 				memcpy(videoPixels.getPixels() + (offset + x) * 3, &videobit, sizeof(char) * 3);
 			}
 		}
-		if(videoDraw_ && (flag & UPDATE_FLAG_VIDEO)) {
-			videoDraw_->setSource(videoPixels);
-		}
+
 	}
 
 	if(flag & UPDATE_FLAG_GROUP_DEPTH){
@@ -448,12 +428,6 @@ void ofxKinectNui::update(UINT flag){
 				}
 			}
 		}
-		if(depthDraw_ && (flag & UPDATE_FLAG_DEPTH)) {
-			depthDraw_->setSource(depthPixels);
-		}
-		if(labelDraw_ && (flag & UPDATE_FLAG_LABEL)) {
-			labelDraw_->setSource(labelPixels);
-		}
 	}
 	if(flag & UPDATE_FLAG_GROUP_SKELETON){
 		// Get the skeleton data of next frame
@@ -504,81 +478,6 @@ void ofxKinectNui::pluggedFunc(){
 */
 void ofxKinectNui::unpluggedFunc(){
 	close();
-}
-
-//---------------------------------------------------------------------------
-void ofxKinectNui::drawVideo(){
-	videoDraw_->draw();
-}
-//---------------------------------------------------------------------------
-void ofxKinectNui::drawDepth(){
-	depthDraw_->draw();
-}
-//---------------------------------------------------------------------------
-void ofxKinectNui::drawLabel(){
-	labelDraw_->draw();
-}
-
-//---------------------------------------------------------------------------
-void ofxKinectNui::drawSkeleton(){
-	for(int i = 0; i < kinect::nui::SkeletonFrame::SKELETON_COUNT; ++i){
-		// if z is negative the skeleton is not tracked
-		if(skeletonPoints[i][0].z < 0) {
-			continue;
-		}
-		skeletonDraw_->draw(skeletonPoints[i]);
- 	}
-}
-/**
-	@brief	Draw skeleton images
-	@param	x	X position to draw
-	@param	y	Y position to draw
-*/
-void ofxKinectNui::drawSkeleton(float x, float y, float w, float h){
-	ofPushMatrix();
-	ofScale(1/(float)depthWidth * w, 1/(float)depthHeight * h);
-	ofTranslate(x, y);
-	drawSkeleton();
-	ofPopMatrix();
-}
-
-//---------------------------------------------------------------------------
-/**
-	@brief	Draw skeleton images
-	@param	x	X position to draw
-	@param	y	Y position to draw
-*/
-void ofxKinectNui::drawSkeleton(float x, float y){
-	drawSkeleton(x, y, width, height);
-}
-
-//---------------------------------------------------------------------------
-/**
-	@brief	Draw skeleton images
-	@param	point	The point to draw
-*/
-void ofxKinectNui::drawSkeleton(const ofPoint& point){
-	drawSkeleton(point.x, point.y);
-}
-
-//---------------------------------------------------------------------------
-/**
-	@brief	Draw skeleton images
-	@param	point	The point to draw
-	@param	w	width of drawing area
-	@param	h	height of drawing area
-*/
-void ofxKinectNui::drawSkeleton(const ofPoint& point, float w, float h){
-	drawSkeleton(point.x, point.y, w, h);
-}
-
-//---------------------------------------------------------------------------
-/**
-	@brief	Draw skeleton images
-	@param	rect	The rectangle area to draw
-*/
-void ofxKinectNui::drawSkeleton(const ofRectangle& rect){
-	drawSkeleton(rect.x, rect.y, rect.width, rect.height);
 }
 
 //---------------------------------------------------------------------------

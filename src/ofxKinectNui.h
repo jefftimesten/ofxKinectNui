@@ -18,9 +18,6 @@
 #include "ofMain.h"
 #include "ofxBase3DVideo.h"
 
-class IDrawPixels;
-class IDrawPoints;
-
 //////////////////////////////////////////////////////
 //				class declarations					//
 //////////////////////////////////////////////////////
@@ -102,25 +99,9 @@ public:
 	void update(){update(UPDATE_FLAG_ALL);}
 	void update(UINT flag);
 
-	void setVideoDrawer(IDrawPixels* drawer);
-	void setDepthDrawer(IDrawPixels* drawer);
-	void setLabelDrawer(IDrawPixels* drawer);
-	void setSkeletonDrawer(IDrawPoints* drawer);
-
-	void drawVideo();
-	void drawDepth();
-	void drawLabel();
-	void drawSkeleton();
-
 	void pluggedFunc();
 	void unpluggedFunc();
 
-	void drawSkeleton(float x, float y, float w, float h);
-	void drawSkeleton(float x, float y);
-	void drawSkeleton(const ofPoint& point);
-	void drawSkeleton(const ofPoint& point, float w, float h);
-	void drawSkeleton(const ofRectangle& rect);
-	
 	void setAngle(int angleInDegrees);
 	int getCurrentAngle();
 	int getTargetAngle();
@@ -228,11 +209,6 @@ protected:
 	NUI_IMAGE_RESOLUTION mVideoResolution;	///< video resolution flag
 	NUI_IMAGE_RESOLUTION mDepthResolution;	///< depth resolution flag
 
-
 	UINT updateFlagDefault_;
-	IDrawPixels* videoDraw_;
-	IDrawPixels* depthDraw_;
-	IDrawPixels* labelDraw_;
-	IDrawPoints* skeletonDraw_;
 };
 #endif // OFX_KINECT_NUI_H
