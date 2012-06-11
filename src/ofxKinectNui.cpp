@@ -610,7 +610,11 @@ int ofxKinectNui::getSkeletonPoints(const ofPoint* ret[]) {
 			valid++;
 		ret[i] = skeletonPoints[i];
 	}
-	return valid;
+
+	// TO DO:  fix this hack.  (Jeff, June 11 2012)
+	// We need to keep the indices associated with the skeleton, so we can't replace it with 'valid'
+	// And if we return any number but SKELETON_COUNT, it screws up the recorder
+	return kinect::nui::SkeletonFrame::SKELETON_COUNT;  
 }
 
 //---------------------------------------------------------------------------
