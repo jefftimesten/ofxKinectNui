@@ -1,5 +1,10 @@
 # Microsoft Kinect SDK 1.0 addon for openFrameworks
 
+#NOTE:
+-- This version of ofxKinectNUI was forked by jefftimesten
+
+
+
 ## License
 built by sadmb  
 facebook: sadmb  
