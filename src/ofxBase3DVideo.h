@@ -17,7 +17,8 @@ public:
 	virtual ofShortPixels& getDistancePixels() = 0;	///< disntance values (in mm) from depth camera 
 	virtual ofPixels& getLabelPixels() = 0;			///< rgba scaled value of players label
 	virtual ofPixels& getCalibratedVideoPixels() = 0;	///< rgb scaled value from video camera adjusted to depth images 
-	
+	virtual int getSkeletonPoints(const ofPoint* ret[]) = 0;
+
 	// implemented
 	ofPixels& getPixelsRef(){return getVideoPixels();} ///< of007 compatible
 	unsigned char* getPixels(){return getVideoPixels().getPixels();} ///< of007 compatible

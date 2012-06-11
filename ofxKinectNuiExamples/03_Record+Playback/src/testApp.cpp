@@ -33,7 +33,6 @@ void testApp::setup() {
 
 	kinect.addKinectListener(this, &testApp::kinectPlugged, &testApp::kinectUnplugged);
 	
-
 	kinectSource = &kinect;
 	angle = kinect.getCurrentAngle();
 
@@ -104,7 +103,8 @@ void testApp::draw() {
 	ofRect(x, y, 320, 240);
 	ofPushMatrix();
 	ofTranslate(x, y);
-	int validCount = kinect.getSkeletonPoints(skeletonPoints);
+	int validCount = kinectSource->getSkeletonPoints(skeletonPoints);
+
 	for(int i=0; i<validCount; i++)
 	{
 		drawSkeleton( skeletonPoints[i] );
@@ -117,11 +117,7 @@ void testApp::draw() {
 
 
 
-
-
-
-
-
+	// Record/playback indicator
 	ofPushMatrix();
 	ofTranslate(35, 35);
 	ofFill();
@@ -137,8 +133,6 @@ void testApp::draw() {
 
 
 
-
-
 	// Draw report
 	stringstream kinectReport;
 	if(bPlugged && !kinect.isOpened() && !bPlayback){
@@ -150,6 +144,7 @@ void testApp::draw() {
 		kinectReport << "Kinect is unplugged..." << endl;
 		ofDrawBitmapString(kinectReport.str(), 200, 300);
 	}
+
 
 	// draw instructions
 	ofSetColor(255, 255, 255);
@@ -165,6 +160,7 @@ void testApp::draw() {
 }
 
 
+//--------------------------------------------------------------
 void testApp::drawSkeleton(const ofPoint* src)
 {
 	ofPolyline pLine;

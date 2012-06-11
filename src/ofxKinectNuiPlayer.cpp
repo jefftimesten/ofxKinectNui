@@ -648,6 +648,26 @@ void ofxKinectNuiPlayer::drawAudioDirection(const ofPoint & point) {
 	drawAudioDirection(point.x, point.y);
 }
 
+
+//---------------------------------------------------------------------------
+/**
+	@brief	skeleton point data
+	@return	map data of playerId and its skeleton points
+*/
+int ofxKinectNuiPlayer::getSkeletonPoints(const ofPoint* ret[]){
+	if(!bSkeleton){
+		ofLog(OF_LOG_WARNING, "ofxKinectNui: getSkeletonPoints - skeleton is not grabbed.");
+	}
+	int valid = 0;
+	for(int i = 0; i < kinect::nui::SkeletonFrame::SKELETON_COUNT; ++i) {
+		if(skeletonPoints[i][0].z >= 0) {
+			ret[valid++] = skeletonPoints[i];
+		}
+	}
+	return valid;
+}
+
+
 //---------------------------------------------------------------------------
 /**
 	@brief	Get pixels of video

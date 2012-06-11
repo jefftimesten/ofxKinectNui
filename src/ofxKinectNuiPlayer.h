@@ -82,6 +82,8 @@ public:
 	ofTexture & getLabelTextureReference();
 	ofTexture& getCalibratedVideoTextureReference();
 
+	int getSkeletonPoints(const ofPoint* ret[]);
+
 	void setUsesTexture(bool bUse);
 
 	float getWidth();
