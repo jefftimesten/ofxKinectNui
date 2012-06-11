@@ -2,7 +2,7 @@
 
 #NOTE:
 -- This version of ofxKinectNUI was forked by jefftimesten
-
+-- IN PROGRESS AS OF JUNE 11 2012
 
 
 ## License

@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\testApp.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxKinectNui\src\ofxKinectNuiSoundRecorder.cpp">
+      <Filter>addons\ofxKinectNui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxKinectNui\src\ofxKinectNuiRecorder.cpp">
+      <Filter>addons\ofxKinectNui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxKinectNui\src\ofxKinectNuiPlayer.cpp">
+      <Filter>addons\ofxKinectNui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxKinectNui\src\ofxKinectNui.cpp">
+      <Filter>addons\ofxKinectNui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxKinectNui\src\kinect\nui\SkeletonFrame.cpp">
+      <Filter>addons\ofxKinectNui\src\kinect\nui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxKinectNui\src\kinect\nui\SkeletonEngine.cpp">
+      <Filter>addons\ofxKinectNui\src\kinect\nui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxKinectNui\src\kinect\nui\KinectContext.cpp">
+      <Filter>addons\ofxKinectNui\src\kinect\nui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxKinectNui\src\kinect\nui\Kinect.cpp">
+      <Filter>addons\ofxKinectNui\src\kinect\nui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxKinectNui\src\kinect\nui\ImageStream.cpp">
+      <Filter>addons\ofxKinectNui\src\kinect\nui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxKinectNui\src\kinect\nui\ImageFrame.cpp">
+      <Filter>addons\ofxKinectNui\src\kinect\nui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxKinectNui\src\kinect\nui\AudioStream.cpp">
+      <Filter>addons\ofxKinectNui\src\kinect\nui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxKinectNui\src\win32\Event.cpp">
+      <Filter>addons\ofxKinectNui\src\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxml.cpp">
+      <Filter>addons\ofxXmlSettings\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlerror.cpp">
+      <Filter>addons\ofxXmlSettings\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlparser.cpp">
+      <Filter>addons\ofxXmlSettings\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.cpp">
+      <Filter>addons\ofxXmlSettings\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxOpenCv\src\ofxCvColorImage.cpp">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxOpenCv\src\ofxCvContourFinder.cpp">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxOpenCv\src\ofxCvFloatImage.cpp">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxOpenCv\src\ofxCvGrayscaleImage.cpp">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxOpenCv\src\ofxCvHaarFinder.cpp">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxOpenCv\src\ofxCvImage.cpp">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxOpenCv\src\ofxCvShortImage.cpp">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\testApp.h" />
+    <ClInclude Include="..\..\..\addons\ofxKinectNui\src\ofxKinectNuiSoundRecorder.h">
+      <Filter>addons\ofxKinectNui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxKinectNui\src\ofxKinectNuiRecorder.h">
+      <Filter>addons\ofxKinectNui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxKinectNui\src\ofxKinectNuiPlayer.h">
+      <Filter>addons\ofxKinectNui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxKinectNui\src\ofxKinectNui.h">
+      <Filter>addons\ofxKinectNui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxKinectNui\src\ofxBase3DVideo.h">
+      <Filter>addons\ofxKinectNui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxKinectNui\src\kinect\nui\WaveOutput.h">
+      <Filter>addons\ofxKinectNui\src\kinect\nui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxKinectNui\src\kinect\nui\WaveFileWriter.h">
+      <Filter>addons\ofxKinectNui\src\kinect\nui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxKinectNui\src\kinect\nui\StaticMediaBuffer.h">
+      <Filter>addons\ofxKinectNui\src\kinect\nui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxKinectNui\src\kinect\nui\SkeletonFrame.h">
+      <Filter>addons\ofxKinectNui\src\kinect\nui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxKinectNui\src\kinect\nui\SkeletonEngine.h">
+      <Filter>addons\ofxKinectNui\src\kinect\nui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxKinectNui\src\kinect\nui\KinectListener.h">
+      <Filter>addons\ofxKinectNui\src\kinect\nui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxKinectNui\src\kinect\nui\KinectContext.h">
+      <Filter>addons\ofxKinectNui\src\kinect\nui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxKinectNui\src\kinect\nui\Kinect.h">
+      <Filter>addons\ofxKinectNui\src\kinect\nui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxKinectNui\src\kinect\nui\ImageStream.h">
+      <Filter>addons\ofxKinectNui\src\kinect\nui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxKinectNui\src\kinect\nui\ImageFrame.h">
+      <Filter>addons\ofxKinectNui\src\kinect\nui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxKinectNui\src\kinect\nui\AudioStream.h">
+      <Filter>addons\ofxKinectNui\src\kinect\nui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxKinectNui\src\win32\SpinLock.h">
+      <Filter>addons\ofxKinectNui\src\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxKinectNui\src\win32\Event.h">
+      <Filter>addons\ofxKinectNui\src\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxXmlSettings\libs\tinyxml.h">
+      <Filter>addons\ofxXmlSettings\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.h">
+      <Filter>addons\ofxXmlSettings\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\src\ofxCvBlob.h">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\src\ofxCvColorImage.h">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\src\ofxCvConstants.h">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\src\ofxCvContourFinder.h">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\src\ofxCvFloatImage.h">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\src\ofxCvGrayscaleImage.h">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\src\ofxCvHaarFinder.h">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\src\ofxCvImage.h">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\src\ofxCvMain.h">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\src\ofxCvShortImage.h">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOpenCv\src\ofxOpenCv.h">
+      <Filter>addons\ofxOpenCv\src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="addons">
+      <UniqueIdentifier>{d79abca0-5b91-4000-9e03-3b535f96d5b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxKinectNui">
+      <UniqueIdentifier>{41a2b0ca-3ef8-475b-97c2-628cf256ce13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxKinectNui\src">
+      <UniqueIdentifier>{809c12a3-2279-4bd9-bbb6-c3240fd0cb4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxKinectNui\src\win32">
+      <UniqueIdentifier>{d3504b56-a649-48f7-8400-d3dd631439f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxKinectNui\src\kinect">
+      <UniqueIdentifier>{d681c037-e330-4a88-89db-dad31d77dfe6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxKinectNui\src\kinect\nui">
+      <UniqueIdentifier>{ebd74895-655a-46f0-a210-57d210bcaef0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxXmlSettings">
+      <UniqueIdentifier>{764fbee8-b6b8-477a-89c8-0c75cca7b812}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxXmlSettings\libs">
+      <UniqueIdentifier>{b64be42c-bd2b-45c8-bf30-ff288fda7483}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxXmlSettings\src">
+      <UniqueIdentifier>{b8325aac-f4d1-4f9a-9ea9-cd999ed49fe3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxOpenCv">
+      <UniqueIdentifier>{b67a1c91-46bd-444d-9331-024bf4ad2c8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxOpenCv\src">
+      <UniqueIdentifier>{b189ad72-f04c-456d-9b13-8625c354b2d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxOpenCv\libs">
+      <UniqueIdentifier>{5082aef9-5df9-4a5a-929e-cfb8f846ebe4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_calib3d231.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_calib3d231d.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_contrib231.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_contrib231d.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_core231.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_core231d.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_features2d231.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_features2d231d.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_flann231.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_flann231d.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_gpu231.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_gpu231d.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_haartraining_engine.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_haartraining_engined.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_highgui231.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_highgui231d.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_imgproc231.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_imgproc231d.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_legacy231.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_legacy231d.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_ml231.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_ml231d.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_objdetect231.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_objdetect231d.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_video231.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\opencv_video231d.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\zlib.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+    <Library Include="..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\zlibd.lib">
+      <Filter>addons\ofxOpenCv\libs</Filter>
+    </Library>
+  </ItemGroup>
+</Project>
