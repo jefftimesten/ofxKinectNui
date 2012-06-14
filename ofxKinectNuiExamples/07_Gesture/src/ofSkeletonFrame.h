@@ -21,7 +21,7 @@ public:
 	bool isValid();
 
 	ofPoint joints[kinect::nui::SkeletonData::POSITION_COUNT];
-
+	
 	static float maxValidArea;
 	static float minValidArea;
 	static float minValidHeight;

@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\testApp.cpp" />
     <ClCompile Include="..\..\..\addons\ofxKinectNui\src\ofxKinectNuiSoundRecorder.cpp">
       <Filter>addons\ofxKinectNui\src</Filter>
     </ClCompile>
@@ -78,9 +77,11 @@
     <ClCompile Include="..\..\..\addons\ofxOsc\libs\oscpack\src\ip\win32\UdpSocketWin.cpp">
       <Filter>addons\ofxOSC\libs\ip\win32</Filter>
     </ClCompile>
+    <ClCompile Include="src\testApp.cpp" />
+    <ClCompile Include="src\ofSkeletonFrame.cpp" />
+    <ClCompile Include="src\ofSkeleton.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\testApp.h" />
     <ClInclude Include="..\..\..\addons\ofxKinectNui\src\ofxKinectNuiSoundRecorder.h">
       <Filter>addons\ofxKinectNui\src</Filter>
     </ClInclude>
@@ -192,6 +193,9 @@
     <ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\ip\UdpSocket.h">
       <Filter>addons\ofxOSC\libs\ip</Filter>
     </ClInclude>
+    <ClInclude Include="src\testApp.h" />
+    <ClInclude Include="src\ofSkeleton.h" />
+    <ClInclude Include="src\ofSkeletonFrame.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="addons">

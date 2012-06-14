@@ -109,8 +109,10 @@ void testApp::draw() {
 
 
 	ofSetColor(255);
-	string message = (bDoFiltering) ? "Filtering: on" : "Filtering: off";
-	ofDrawBitmapString(message, 10, ofGetHeight()-30);
+	stringstream message;
+	message << ((bDoFiltering) ? "Filtering: on" : "Filtering: off") << endl;
+	message << "Framerate: " << ofGetFrameRate() << endl;
+	ofDrawBitmapString(message.str(), 10, ofGetHeight()-30);
 }
 
 

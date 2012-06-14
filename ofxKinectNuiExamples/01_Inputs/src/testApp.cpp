@@ -17,7 +17,7 @@ void testApp::setup() {
 
 	ofSetLogLevel(OF_LOG_VERBOSE);
 	ofSetFrameRate(60);
-	ofSetVerticalSync(true);
+	ofSetVerticalSync(false);
 
 	// Step 1: initialize the camera.  Tell it which functionality it should activate
 	ofxKinectNui::InitSetting initSetting;
@@ -44,11 +44,10 @@ void testApp::setup() {
 	
 	// Step 4: Initialze a texture for the "calibrated" RGB pixels.
 	// Why do we need to do this?
+	video.allocate(kinect.getVideoResolutionWidth(), kinect.getVideoResolutionHeight(), GL_RGB);
 	calibratedVideo.allocate(320, 240, GL_RGB);
 	depth.allocate(320, 240, GL_RGB);
 	labels.allocate(320, 240, GL_RGBA);
-	video.allocate(kinect.getVideoResolutionWidth(), kinect.getVideoResolutionHeight(), GL_RGB);
-
 }
 
 //--------------------------------------------------------------
@@ -57,10 +56,11 @@ void testApp::update() {
 	if(kinect.isFrameNew())
 	{
 		// Load the pixels from the Kinect into the textures we made
+		video.loadData( kinect.getVideoPixels() );
 		calibratedVideo.loadData(kinect.getCalibratedVideoPixels());
 		depth.loadData( kinect.getDepthPixels() );
 		labels.loadData( kinect.getLabelPixels() );
-		video.loadData( kinect.getVideoPixels() );
+		
 
 		/**
 		Now we fetch the 2D array of ofPoints.  The array will be: skeletonPoints[7][20]
@@ -125,6 +125,11 @@ void testApp::draw() {
 	
 
 	ofDisableAlphaBlending();
+
+	ofSetColor(255);
+	stringstream report;
+	report << "Framerate: " << ofGetFrameRate() << endl;
+	ofDrawBitmapString(report.str(), 10, 15);
 }
 
 

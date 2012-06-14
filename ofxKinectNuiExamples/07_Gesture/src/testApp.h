@@ -14,7 +14,7 @@
 
 #include "ofxKinectNui.h"
 #include "ofMain.h"
-
+#include "ofSkeleton.h"
 
 class testApp : public ofBaseApp {
 	public:
@@ -42,11 +42,12 @@ class testApp : public ofBaseApp {
 
 		bool bPlugged;
 		bool bUnplugged;
-		
+		bool bDoFiltering;
+
 		unsigned short nearClipping;
 		unsigned short farClipping;
 		int angle;
 
 		ofTexture video;
-		const ofPoint* skeletonPoints[kinect::nui::SkeletonFrame::SKELETON_COUNT];
+		ofSkeleton skeletons[kinect::nui::SkeletonFrame::SKELETON_COUNT];
 };

@@ -41,164 +41,79 @@ void testApp::setup() {
 	bPlugged = kinect.isConnected();
 	nearClipping = kinect.getNearClippingDistance();
 	farClipping = kinect.getFarClippingDistance();
-	
+
+
 	// Step 4: Initialze a texture for the video
 	video.allocate(kinect.getVideoResolutionWidth(), kinect.getVideoResolutionHeight(), GL_RGB);
 
+
+	// Do we want to filter out invalid skeletons?
+	bDoFiltering=true;
 }
 
 //--------------------------------------------------------------
 void testApp::update() {
+
 	kinect.update();
 
 	if(kinect.isFrameNew())
 	{
 		video.loadData( kinect.getVideoPixels() );
 
-		kinect.getSkeletonPoints(skeletonPoints);
+		// Get the skeleton points in a 2D array from the camera...
+		const ofPoint* skeletonPoints[kinect::nui::SkeletonFrame::SKELETON_COUNT];
+		kinect.getSkeletonPoints( skeletonPoints );
+
+
+		// Loop through each skeleton
+		for(int i=0; i<kinect::nui::SkeletonFrame::SKELETON_COUNT; i++)
+		{
+			// Make a ofSkeletonFrame object
+			ofSkeletonFrame frame;
+
+			// For each skeleton (i), loop through all of the ofPoints (j)
+			// Remember, there are 20 (kinect::nui::SkeletonData::POSITION_COUNT) joints
+			for(int j=0; j<kinect::nui::SkeletonData::POSITION_COUNT; j++)
+			{
+				frame.joints[j] = skeletonPoints[i][j];
+			}
+
+			// Once we've added all of the ofPoints to the ofSkeletonFrame object,
+			// If the ofSkeletonFrame object is "valid", add it to the skeleton
+			// Otherwise, we just ignore it completely
+			if(frame.isValid() || !bDoFiltering)
+			{
+				skeletons[i].addFrame( frame );
+			}
+		}
 	}
 }
 
 //--------------------------------------------------------------
 void testApp::draw() {
+
 	ofBackground(100, 100, 100);
 	
-	video.draw(0, 0, 1024, 768);
+	video.draw(0, 0);
+
 
 	ofPushMatrix();
-	ofScale(1024/320.f, 768/240.f);
+	ofScale(640/320.f, 480/240.f);
 	for(int i=0; i<kinect::nui::SkeletonFrame::SKELETON_COUNT; i++)
 	{
-		drawSkeleton( skeletonPoints[i] );
+		// Only draw the skeleton if it has been updated in the last 2 seconds.
+		if(skeletons[i].age() < 2)
+			skeletons[i].draw();
 	}
 	ofPopMatrix();
-}
 
 
-//--------------------------------------------------------------------------------
-bool testApp::isValidSkeleton(const ofPoint* skeleton) 
-{ 
-    ofPoint min(FLT_MAX, FLT_MAX);
-    ofPoint max(0, 0);
-    for(int i=0; i<NUI_SKELETON_POSITION_COUNT; i++)
-    {
-        if(skeleton[i].x == -1 && skeleton[i].y == -1) {
-            return false;
-        }
-        
-        if(skeleton[i].x > max.x) max.x = skeleton[i].x;
-        if(skeleton[i].y > max.y) max.y = skeleton[i].y;
-        if(skeleton[i].x < min.x) min.x = skeleton[i].x;
-        if(skeleton[i].y < min.y) min.y = skeleton[i].y;
-    }
-           
-    ofRectangle boundingRect(min.x, min.y, max.x-min.x, max.y-min.y);
-    float area = boundingRect.width * boundingRect.height;
-    
-    if(!ofInRange(area, ofxNuiSkeletonFrame::validMinArea, ofxNuiSkeletonFrame::validMaxArea)) {
-        if(area!=0) ofLog(OF_LOG_VERBOSE, "Area ("+ofToString(area)+") not in range");
-        return false;
-    }
-    
-    // If the foot is higher than the head, we've got a fucked up skeleton
-    if(skeleton[NUI_SKELETON_POSITION_FOOT_LEFT].y < skeleton[NUI_SKELETON_POSITION_HEAD].y) {
-        ofLog(OF_LOG_VERBOSE, "not valid bcz foot is above head");
-        return false;
-    }
-    
-    if(getAngleABC(NUI_SKELETON_POSITION_HIP_CENTER, NUI_SKELETON_POSITION_SPINE, NUI_SKELETON_POSITION_SHOULDER_CENTER) > 10) {
-        ofLog(OF_LOG_VERBOSE, "not valid bcz of hip->spine->shoulder angle");
-        return false;
-    }
-    
-    if(boundingRect.height < MIN_HEIGHT) { 
-        ofLog(OF_LOG_VERBOSE, "Min height not met. Height="+ofToString(boundingRect.height));
-        return false;
-    }
-    
-    if(skeleton[NUI_SKELETON_POSITION_FOOT_RIGHT].y < skeleton[NUI_SKELETON_POSITION_HEAD].y) {
-        return false;
-    }
-    
-    if((skeleton[NUI_SKELETON_POSITION_KNEE_LEFT].y < skeleton[NUI_SKELETON_POSITION_SHOULDER_CENTER].y)) 
-        return false;
-    
-    if((skeleton[NUI_SKELETON_POSITION_KNEE_RIGHT].y < skeleton[NUI_SKELETON_POSITION_SHOULDER_CENTER].y)) 
-        return false;
-    
-	return true;
-}
-
-
-//----------------------------------------------------------
-float testApp::getAngleABC( ofPoint a, ofPoint b, ofPoint c )
-{    
-    ofPoint ba = (a-b).getNormalized();
-    ofPoint bc = (c-b).getNormalized();
-    float angle = acos( ba.dot(bc) );
-    return angle;
-}
-
-//--------------------------------------------------------------
-void testApp::drawSkeleton(const ofPoint* src)
-{
-	ofPolyline pLine;
-	ofPushStyle();
 	ofSetColor(255);
-	ofNoFill();
-	ofSetLineWidth(4);
-	// HEAD
-	pLine.clear();
-	pLine.addVertex(src[NUI_SKELETON_POSITION_HIP_CENTER].x, src[NUI_SKELETON_POSITION_HIP_CENTER].y);
-	pLine.addVertex(src[NUI_SKELETON_POSITION_SPINE].x, src[NUI_SKELETON_POSITION_SPINE].y);
-	pLine.addVertex(src[NUI_SKELETON_POSITION_SHOULDER_CENTER].x, src[NUI_SKELETON_POSITION_SHOULDER_CENTER].y);
-	pLine.addVertex(src[NUI_SKELETON_POSITION_HEAD].x, src[NUI_SKELETON_POSITION_HEAD].y);
-	pLine.draw();
-	
-	// BODY_LEFT
-	pLine.clear();
-	pLine.addVertex(src[NUI_SKELETON_POSITION_SHOULDER_CENTER].x, src[NUI_SKELETON_POSITION_SHOULDER_CENTER].y);
-	pLine.addVertex(src[NUI_SKELETON_POSITION_SHOULDER_LEFT].x, src[NUI_SKELETON_POSITION_SHOULDER_LEFT].y);
-	pLine.addVertex(src[NUI_SKELETON_POSITION_ELBOW_LEFT].x, src[NUI_SKELETON_POSITION_ELBOW_LEFT].y);
-	pLine.addVertex(src[NUI_SKELETON_POSITION_WRIST_LEFT].x, src[NUI_SKELETON_POSITION_WRIST_LEFT].y);
-	pLine.addVertex(src[NUI_SKELETON_POSITION_HAND_LEFT].x, src[NUI_SKELETON_POSITION_HAND_LEFT].y);
-	pLine.draw();
-
-	// BODY_RIGHT
-	pLine.clear();
-	pLine.addVertex(src[NUI_SKELETON_POSITION_SHOULDER_CENTER].x, src[NUI_SKELETON_POSITION_SHOULDER_CENTER].y);
-	pLine.addVertex(src[NUI_SKELETON_POSITION_SHOULDER_RIGHT].x, src[NUI_SKELETON_POSITION_SHOULDER_RIGHT].y);
-	pLine.addVertex(src[NUI_SKELETON_POSITION_ELBOW_RIGHT].x, src[NUI_SKELETON_POSITION_ELBOW_RIGHT].y);
-	pLine.addVertex(src[NUI_SKELETON_POSITION_WRIST_RIGHT].x, src[NUI_SKELETON_POSITION_WRIST_RIGHT].y);
-	pLine.addVertex(src[NUI_SKELETON_POSITION_HAND_RIGHT].x, src[NUI_SKELETON_POSITION_HAND_RIGHT].y);
-	pLine.draw();
-
-	// LEG_LEFT
-	pLine.clear();
-	pLine.addVertex(src[NUI_SKELETON_POSITION_HIP_CENTER].x, src[NUI_SKELETON_POSITION_HIP_CENTER].y);
-	pLine.addVertex(src[NUI_SKELETON_POSITION_HIP_LEFT].x, src[NUI_SKELETON_POSITION_HIP_LEFT].y);
-	pLine.addVertex(src[NUI_SKELETON_POSITION_KNEE_LEFT].x, src[NUI_SKELETON_POSITION_KNEE_LEFT].y);
-	pLine.addVertex(src[NUI_SKELETON_POSITION_ANKLE_LEFT].x, src[NUI_SKELETON_POSITION_ANKLE_LEFT].y);
-	pLine.addVertex(src[NUI_SKELETON_POSITION_FOOT_LEFT].x, src[NUI_SKELETON_POSITION_FOOT_LEFT].y);
-	pLine.draw();
-
-	// LEG_RIGHT
-	pLine.clear();
-	pLine.addVertex(src[NUI_SKELETON_POSITION_HIP_CENTER].x, src[NUI_SKELETON_POSITION_HIP_CENTER].y);
-	pLine.addVertex(src[NUI_SKELETON_POSITION_HIP_RIGHT].x, src[NUI_SKELETON_POSITION_HIP_RIGHT].y);
-	pLine.addVertex(src[NUI_SKELETON_POSITION_KNEE_RIGHT].x, src[NUI_SKELETON_POSITION_KNEE_RIGHT].y);
-	pLine.addVertex(src[NUI_SKELETON_POSITION_ANKLE_RIGHT].x, src[NUI_SKELETON_POSITION_ANKLE_RIGHT].y);
-	pLine.addVertex(src[NUI_SKELETON_POSITION_FOOT_RIGHT].x, src[NUI_SKELETON_POSITION_FOOT_RIGHT].y);
-	pLine.draw();
-
-	ofSetColor(0, 0, 255);
-	ofSetLineWidth(0);
-	ofFill();
-	for(int i = 0; i < NUI_SKELETON_POSITION_COUNT; ++i){
-		ofCircle(src[i].x, src[i].y, 5);
-	}
-	ofPopStyle();
+	string message = (bDoFiltering) ? "Filtering: on" : "Filtering: off";
+	ofDrawBitmapString(message, 10, ofGetHeight()-30);
 }
+
+
 
 
 //--------------------------------------------------------------
@@ -228,13 +143,14 @@ void testApp::keyPressed (int key) {
 		}
 		kinect.setAngle(angle);
 		break;
-	
+	case 'f':
+		bDoFiltering=!bDoFiltering;
+		break;
 	}
 }
 
 //--------------------------------------------------------------
 void testApp::mouseMoved(int x, int y) {
-
 }
 
 //--------------------------------------------------------------
