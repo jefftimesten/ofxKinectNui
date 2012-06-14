@@ -87,6 +87,11 @@ void testApp::update() {
 			}
 		}
 	}
+
+	for(int i=0; i<kinect::nui::SkeletonFrame::SKELETON_COUNT; i++)
+	{
+		skeletons[i].update();
+	}
 }
 
 //--------------------------------------------------------------
