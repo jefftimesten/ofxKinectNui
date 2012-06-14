@@ -61,6 +61,15 @@ void testApp::update() {
 		depth.loadData( kinect.getDepthPixels() );
 		labels.loadData( kinect.getLabelPixels() );
 		video.loadData( kinect.getVideoPixels() );
+
+		/**
+		Now we fetch the 2D array of ofPoints.  The array will be: skeletonPoints[7][20]
+		The Kinect has "slots" for 7 (kinect::nui::SkeletonFrame::SKELETON_COUNT) skeletons
+		But it can only track 2 at a time.  
+		Each skeleton has 20 (kinect::nui::SkeletonData::POSITION_COUNT) joints
+		Check out the drawSkeleton() function to see what they all are
+		*/
+		kinect.getSkeletonPoints(skeletonPoints);
 	}
 }
 
@@ -73,46 +82,53 @@ void testApp::draw() {
 	int x = 10;
 	int y = 10;
 
-	
+	// Draw the RGB image
 	video.draw(x, y);
 
 	y += 490;
 
+	// Draw the grayscale depth image
 	depth.draw(x, y);
 
 	x += 330;
 
+
+	// Draw the labels (with a rectangle around it)
 	ofSetColor(255);
 	ofNoFill();
 	ofRect(x, y, 320, 240);
-
 	labels.draw(x, y);
 	
 	x += 330;
 
+
+	// Draw the RGB image, shifted so that it matches up with the depth image
+	// (you'll see why this is important in the next example)
 	calibratedVideo.draw(x, y);
 
 	x += 330;
 
+
+	// Draw the skeleton points  (with a rectangle around it)
 	ofSetColor(255);
 	ofNoFill();
 	ofRect(x, y, 320, 240);
 	ofPushMatrix();
 	ofTranslate(x, y);
-	int validCount = kinect.getSkeletonPoints(skeletonPoints);
-	for(int i=0; i<validCount; i++)
+	for(int i=0; i<kinect::nui::SkeletonFrame::SKELETON_COUNT; i++)
 	{
 		drawSkeleton( skeletonPoints[i] );
 	}
 	ofPopMatrix();
 
 
-		
+	
+
 	ofDisableAlphaBlending();
 }
 
 
-
+//--------------------------------------------------------------
 void testApp::drawSkeleton(const ofPoint* src)
 {
 	ofPolyline pLine;
