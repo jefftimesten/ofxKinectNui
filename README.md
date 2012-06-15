@@ -1,9 +1,16 @@
+
+This fork of the ofxKinectNui addon by sadmb was made for the Kinect Workshop 
+at kitchentablecoders.com on June 16, 2012.
+
+Please visit this link for the workshop agenda:
+
+https://docs.google.com/document/pub?id=1_LhrAZleXF8QsDyWsAYz2HPkNraJjUd4lUlxySc_9I8
+
+
+
+
+
 # Microsoft Kinect SDK 1.0 addon for openFrameworks
-
-#NOTE:
--- This version of ofxKinectNUI was forked by jefftimesten
--- IN PROGRESS AS OF JUNE 11 2012
-
 
 ## License
 built by sadmb  

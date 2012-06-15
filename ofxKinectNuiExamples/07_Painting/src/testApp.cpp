@@ -47,6 +47,13 @@ void testApp::setup() {
 	video.allocate(kinect.getVideoResolutionWidth(), kinect.getVideoResolutionHeight(), GL_RGB);
 
 
+	// Step 5. Move the camera a bit
+	cam.setPosition( ofGetWidth() / 2.0, (ofGetHeight()/2.0)-300, 1000 );
+	cam.lookAt( ofVec3f(ofGetWidth() / 2.0, ofGetHeight()/2.0-50, 0)  );
+	cam.setScale(1, -1, 1);
+
+	depth = -1000;
+
 	// Do we want to filter out invalid skeletons?
 	bDoFiltering=true;
 }
@@ -68,14 +75,20 @@ void testApp::update() {
 		// Loop through each skeleton
 		for(int i=0; i<kinect::nui::SkeletonFrame::SKELETON_COUNT; i++)
 		{
+			if(skeletonPoints[i][0].z==-1) continue;
+
 			// Make a ofSkeletonFrame object
 			ofSkeletonFrame frame;
 
 			// For each skeleton (i), loop through all of the ofPoints (j)
 			// Remember, there are 20 (kinect::nui::SkeletonData::POSITION_COUNT) joints
+			// Also, this time we are going to normalize the points
+			// that is, put them on a scale of 0-1
 			for(int j=0; j<kinect::nui::SkeletonData::POSITION_COUNT; j++)
 			{
-				frame.joints[j] = skeletonPoints[i][j];
+				frame.joints[j].x = ofMap(skeletonPoints[i][j].x, 0, kinect.getDepthResolutionWidth(), 0, 1);
+				frame.joints[j].y = ofMap(skeletonPoints[i][j].y, 0, kinect.getDepthResolutionHeight(), 0, 1);
+				frame.joints[j].z = ofMap(skeletonPoints[i][j].z, MIN_SKELETON_Z, MAX_SKELETON_Z, 0, 1); 
 			}
 
 			// Once we've added all of the ofPoints to the ofSkeletonFrame object,
@@ -98,19 +111,28 @@ void testApp::update() {
 void testApp::draw() {
 
 	ofBackground(100, 100, 100);
-	
-	video.draw(0, 0);
 
+	cam.begin();  
+    glEnable(GL_DEPTH_TEST);
+    
 
+	ofSetColor(0);
+	ofNoFill();
 	ofPushMatrix();
-	ofScale(640/320.f, 480/240.f);
+	ofScale(ofGetWidth(), ofGetHeight(), depth);
+	ofTranslate(.5, .5, .5);
+	ofBox(0, 0, 0, 1);
+	ofPopMatrix(); 
+
+
 	for(int i=0; i<kinect::nui::SkeletonFrame::SKELETON_COUNT; i++)
 	{
 		// Only draw the skeleton if it has been updated in the last 2 seconds.
-		if(skeletons[i].age() < 2)
-			skeletons[i].draw();
+		skeletons[i].draw(0, 0, ofGetWidth(), ofGetHeight(), depth);
 	}
-	ofPopMatrix();
+
+	glDisable(GL_DEPTH_TEST);
+	cam.end();
 
 
 	ofSetColor(255);

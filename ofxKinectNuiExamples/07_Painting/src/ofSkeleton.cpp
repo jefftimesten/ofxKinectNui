@@ -1,7 +1,6 @@
-
+ 
 #include "ofSkeleton.h"
 
-bool ofSkeleton::bDrawVelocity = false;
 
 // -------------------------------------------
 ofSkeleton::ofSkeleton(void)
@@ -28,53 +27,69 @@ void ofSkeleton::addFrame( ofSkeletonFrame& _frame )
 	}
 
 	frame = _frame;
-
 	lastUpdated = ofGetElapsedTimef();
-}
 
 
-// --------------------------------------------
-void ofSkeleton::addParticles( int num, ofPoint location, ofPoint direction, float velocity )
-{
-	ofColor c;
-	for(int i=0; i<num; i++)
+	if(velocity[NUI_SKELETON_POSITION_HAND_LEFT] > .1)
 	{
 		Particle p;
-		p.color.setHsb(ofRandom(255), 255, 255);
-		p.set( location );
-		p.radius = ofRandom(2, 5);
-		p.velocity = direction * (velocity * ofRandomf());
+		p.color.set(255, 0, 0);
+		p.set( frame.joints[NUI_SKELETON_POSITION_HAND_LEFT] );
+		p.born = ofGetElapsedTimef();
+		particles.push_back( p );
+	}
+
+	if(velocity[NUI_SKELETON_POSITION_HAND_RIGHT] > .1)
+	{
+		Particle p;
+		p.color.set(0, 255, 0);
+		p.set( frame.joints[NUI_SKELETON_POSITION_HAND_RIGHT] );
+		p.born = ofGetElapsedTimef();
+		particles.push_back( p );
+	}
+
+	if(velocity[NUI_SKELETON_POSITION_HEAD] > .1)
+	{
+		Particle p;
+		p.color.set(0, 0, 255);
+		p.set( frame.joints[NUI_SKELETON_POSITION_HEAD] );
+		p.born = ofGetElapsedTimef();
 		particles.push_back( p );
 	}
 }
+
 
 // --------------------------------------------
 void ofSkeleton::update()
 {
 	for(int i=0; i<particles.size(); i++)
 	{
-		particles[i].velocity.y += .098;
-		particles[i] += particles[i].velocity;
-	}
-}
-
-// --------------------------------------------
-void ofSkeleton::draw()
-{
-	frame.draw();
-
-	if(bDrawVelocity)
-	{
-		ofSetColor(255);
-		for(int i=0; i<kinect::nui::SkeletonData::POSITION_COUNT; i++)
+		float age = ofGetElapsedTimef() - particles[i].born;
+		if(age < 5) 
 		{
-			ofDrawBitmapString(ofToString(velocity[i], 2), frame.joints[i]);
+			particles[i].radius = sin((age/5.0) * PI) * 30.0;
+		} 
+		else 
+		{
+			particles.erase( particles.begin() + i );
 		}
 	}
 
+}
+
+// --------------------------------------------
+void ofSkeleton::draw(float x, float y, float w, float h, float d)
+{
+	if(age() < 2)
+		frame.draw(x, y, w, h, d);
+
+	// Draw particles
 	for(int i=0; i<particles.size(); i++)
 	{
 		ofSetColor(particles[i].color);
-		ofCircle(particles[i], particles[i].radius);
+		ofPushMatrix();
+		ofTranslate(particles[i].x*w, particles[i].y*h, particles[i].z*d);
+		ofCircle(0, 0, particles[i].radius);
+		ofPopMatrix();
 	}
 }

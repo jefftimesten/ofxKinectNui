@@ -60,44 +60,54 @@ void testApp::update() {
 
 //--------------------------------------------------------------
 void testApp::draw() {
+	
 	ofBackground(100, 100, 100);
-
+	glEnable(GL_DEPTH_TEST);
 	ofPushMatrix();
-	drawCalibratedTexture();	// draw calibrated images coodinates to depth images
-	ofPopMatrix();	
-}
 
-//--------------------------------------------------------------
-void testApp::drawCalibratedTexture(){
-	int offsetX = -400;
-	int offsetY = -300;
-	glTranslatef(512, 386, 0);
+	// Center the image and rotate it around the vertical center of the screen
+	ofTranslate((ofGetWidth()/2.0)-(640/2.0), 600);
+	ofRotateX((mouseY - (ofGetHeight()/2) ) / 5.f);
+	ofTranslate(0, -400);
 
-	for(int y = 0; y < 240; y++)
+
+	// Draw the interaction area
+	ofSetColor(0);
+	ofNoFill();
+	ofPushMatrix();
+	ofScale(640, 480, -1000);
+	ofTranslate(.5, .5, .5);
+	ofBox(0, 0, 0, 1);
+	ofPopMatrix(); 
+
+
+	// Loop through every x/y coordinate in the depth image
+	for(int y=0; y<240; y++)
 	{
-		for(int x = 0; x < 320; x++)
+		for(int x=0; x<320; x++)
 		{
-			float distance = kinect.getDistanceAt(x, y);
-			if(distance > 500 && distance < 1500){
-				glPushMatrix();
-				float radius = (1500 - distance);
-				ofSetColor(kinect.getCalibratedColorAt(x, y));
-				ofRotateY(mRotationY);
-				ofRotateX(mRotationX);
-				glTranslatef(x * 2.5 + offsetX, y * 2.5 + offsetY, radius);
-				ofBox(5);
-				glPopMatrix();
-			}else{
-				glPushMatrix();
-				ofSetColor(kinect.getCalibratedColorAt(x, y));
-				ofRotateY(mRotationY);
-				ofRotateX(mRotationX);
-				ofRect(x * 2.5 + offsetX, y * 2.5 + offsetY, 5, 5);
-				glPopMatrix();
+			float d = kinect.getDistanceAt(x, y);
+
+			// The min and max distances (in mm) are 800 and 4000
+			if(ofInRange(d, 800, 4000))
+			{
+				float z = ofMap( d, 800, 4000, 0, -1000, false);
+				ofColor c = kinect.getCalibratedColorAt(x, y);
+
+				ofPushMatrix();
+				ofTranslate(x*2, y*2, z);
+				ofSetColor( c );
+				ofCircle(0, 0, 1);
+				ofPopMatrix();
 			}
 		}
 	}
+
+
+	ofPopMatrix();	
+	glDisable(GL_DEPTH_TEST);
 }
+
 
 
 //--------------------------------------------------------------
@@ -134,8 +144,7 @@ void testApp::keyPressed (int key) {
 
 //--------------------------------------------------------------
 void testApp::mouseMoved(int x, int y) {
-	mRotationY = (x - 512) / 5;
-	mRotationX = (384 - y) / 5;
+
 }
 
 //--------------------------------------------------------------

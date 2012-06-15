@@ -2,11 +2,10 @@
 #include "ofMain.h"
 #include "ofSkeletonFrame.h"
 
-class Particle : public ofVec2f {
+class Particle : public ofVec3f {
 public:
-	ofVec2f velocity;
 	ofColor color;
-	float radius;
+	float born, age, radius;
 };
 
 
@@ -16,10 +15,8 @@ public:
 	ofSkeleton();
 	float age();
 	void addFrame( ofSkeletonFrame& _frame );
-	void draw();
+	void draw(float x, float y, float w, float h, float d);
 	void update();
-	void addParticles( int num, ofPoint location, ofPoint direction, float velocity );
-	static bool bDrawVelocity;
 
 protected:
 

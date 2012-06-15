@@ -38,6 +38,8 @@ class testApp : public ofBaseApp {
 		void kinectPlugged();
 		void kinectUnplugged();
 
+		ofCamera cam;
+
 		ofxKinectNui kinect;
 
 		bool bPlugged;
@@ -47,6 +49,8 @@ class testApp : public ofBaseApp {
 		unsigned short nearClipping;
 		unsigned short farClipping;
 		int angle;
+
+		float depth;
 
 		ofTexture video;
 		ofSkeleton skeletons[kinect::nui::SkeletonFrame::SKELETON_COUNT];
