@@ -6,7 +6,7 @@ at kitchentablecoders.com on June 16, 2012.
 
 ### REQUIREMENTS:  
 
-**Microsoft Kinect SDK, version 1.0+  ** 
+**Microsoft Kinect SDK, version 1.0+** 
 http://www.microsoft.com/en-us/kinectforwindows/  
 Works with 1.5 also  
 
