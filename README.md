@@ -1,5 +1,5 @@
 
-## A Note from Jeff about this fork
+## A Note from Jeff about this fork 
 
 This fork of the ofxKinectNui addon by sadmb was made for the Kinect Workshop 
 at kitchentablecoders.com on June 16, 2012.
