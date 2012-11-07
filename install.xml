@@ -50,10 +50,12 @@
 		</src>
 		<include>
 			<path>../../../addons/ofxKinectNui/src/</path>
-			<path>$(KINECTSDK10_DIR)/inc</path>					</include>
+			<path>C:\Program Files\Microsoft SDKs\Kinect\v1.5\inc</path>
+		</include>
 		
+		<!-- expanded $(KINECTSDK10_DIR) and $(VCInstallDir) to full path -->
 		<link>
-			<lib os="Win32" compiler="visualstudio">$(KINECTSDK10_DIR)/lib/x86/Kinect10.lib</lib>
+			<lib os="win32" compiler="visualstudio">C:\Program Files\Microsoft SDKs\Kinect\v1.5\lib\x86\Kinect10.lib</lib>
 			<lib os="Win32" compiler="visualstudio">$(VCInstallDir)/lib/msdmo.lib</lib>
 			<lib os="Win32" compiler="visualstudio">$(VCInstallDir)lib/dmoguids.lib</lib>
 			<lib os="Win32" compiler="visualstudio">$(VCInstallDir)lib/amstrmid.lib</lib>
@@ -63,7 +65,6 @@
 			<lib os="x64" compiler="visualstudio">$(VCInstallDir)lib/dmoguids.lib</lib>
 			<lib os="x64" compiler="visualstudio">$(VCInstallDir)lib/amstrmid.lib</lib>
 			<lib os="x64" compiler="visualstudio">$(VCInstallDir)lib/winmm.lib</lib>
-
 		</link>
 	</add>
 	 

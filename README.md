@@ -2,12 +2,15 @@
 This fork of the ofxKinectNui addon by sadmb was made for the Kinect Workshop 
 at kitchentablecoders.com on June 16, 2012.
 
-Please visit this link for the workshop agenda:
+REQUIREMENTS:
+http://www.microsoft.com/en-us/kinectforwindows/
 
-https://docs.google.com/document/pub?id=1_LhrAZleXF8QsDyWsAYz2HPkNraJjUd4lUlxySc_9I8
-
-
-
+VISUAL STUDIO 2010:
+Note: to compile in Debug mode, you must install SP1
+http://stackoverflow.com/questions/10888391/link-fatal-error-lnk1123-failure-during-conversion-to-coff-file-invalid-or-c
+http://www.microsoft.com/en-us/download/details.aspx?id=23691
+This, in turn, causes a problem in addons\ofxOsc\src\ofxOscArg.h line 76
+You can simply comment out "typedef long int32_t;" to fix it.
 
 
 # Microsoft Kinect SDK 1.0 addon for openFrameworks
@@ -28,3 +31,5 @@ We will not be liable for any loss or damage caused by this program.
 ## Requirement
 1: You must install Visual C++ 2010, openFrameworks and Kinect SDK 1.0 before using this sample.  
 2: Place this to openframeworks addons folder.
+
+

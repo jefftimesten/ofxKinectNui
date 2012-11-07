@@ -1,0 +1,1 @@
+NOTICE that this app doesn't use the ofxKinectNUI addon.  So you can easily move it to a Mac.

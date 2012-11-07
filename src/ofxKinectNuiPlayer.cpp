@@ -185,7 +185,7 @@ void ofxKinectNuiPlayer::setup(	const string & file, bool useTexture /*= true*/)
 			skeletons = new float[kinect::nui::SkeletonFrame::SKELETON_COUNT * kinect::nui::SkeletonData::POSITION_COUNT * 3];
 		}
 		for(int i = 0; i < kinect::nui::SkeletonFrame::SKELETON_COUNT; ++i){
-			skeletonPoints[i][0] = -1;
+			skeletonPoints[i][0].z = -1;
 		}
 	}
 
