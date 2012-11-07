@@ -6,10 +6,13 @@ REQUIREMENTS:
 http://www.microsoft.com/en-us/kinectforwindows/
 
 VISUAL STUDIO 2010:
-Note: to compile in Debug mode, you must install SP1
+Note: to compile in Debug mode, you must install SP1 
+
 http://stackoverflow.com/questions/10888391/link-fatal-error-lnk1123-failure-during-conversion-to-coff-file-invalid-or-c
 http://www.microsoft.com/en-us/download/details.aspx?id=23691
-This, in turn, causes a problem in addons\ofxOsc\src\ofxOscArg.h line 76
+
+This, in turn, causes a problem in addons\ofxOsc\src\ofxOscArg.h (which is used by some of the examples that use ofxOSC) line 76
+
 You can simply comment out "typedef long int32_t;" to fix it.
 
 
