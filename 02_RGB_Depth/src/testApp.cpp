@@ -166,6 +166,7 @@ void testApp::dragEvent(ofDragInfo dragInfo){
 
 }
 
+
 //--------------------------------------------------------------
 void testApp::kinectPlugged(){
 	bPlugged = true;

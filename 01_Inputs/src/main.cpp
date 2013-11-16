@@ -1,4 +1,4 @@
-
+#include "ofxKinectNui.h"
 #include "ofMain.h"
 #include "testApp.h"
 
