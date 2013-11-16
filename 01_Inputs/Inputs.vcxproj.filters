@@ -49,22 +49,22 @@
 			<UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons">
-			<UniqueIdentifier>{71834f65-f3a9-211e-73b8-dc8563776aec}</UniqueIdentifier>
+			<UniqueIdentifier>{71834F65-F3A9-211E-73B8-DC85}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxKinectNui">
-			<UniqueIdentifier>{34f24753-3b66-a83c-8577-1cc0b2033023}</UniqueIdentifier>
+			<UniqueIdentifier>{34F24753-3B66-A83C-8577-1CC0}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxKinectNui\src">
-			<UniqueIdentifier>{be05a897-e6b4-5be9-7984-f9442d116f1e}</UniqueIdentifier>
+			<UniqueIdentifier>{BE05A897-E6B4-5BE9-7984-F944}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxKinectNui\src\kinect">
-			<UniqueIdentifier>{29fa98ca-2316-a548-87f8-7d8bedfceeda}</UniqueIdentifier>
+			<UniqueIdentifier>{29FA98CA-2316-A548-87F8-7D8B}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxKinectNui\src\kinect\nui">
-			<UniqueIdentifier>{ced4ac24-fc0a-1cb7-d732-5d4d90a7e374}</UniqueIdentifier>
+			<UniqueIdentifier>{CED4AC24-FC0A-1CB7-D732-5D4D}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxKinectNui\src\win32">
-			<UniqueIdentifier>{e28e7850-8c70-726e-7479-6c48ad55a45c}</UniqueIdentifier>
+			<UniqueIdentifier>{E28E7850-8C70-726E-7479-6C48}</UniqueIdentifier>
 		</Filter>
 	</ItemGroup>
 	<ItemGroup>
@@ -125,5 +125,8 @@
 		<ClInclude Include="..\..\..\addons\ofxKinectNui\src\win32\SpinLock.h">
 			<Filter>addons\ofxKinectNui\src\win32</Filter>
 		</ClInclude>
+	</ItemGroup>
+	<ItemGroup>
+		<ResourceCompile Include="icon.rc" />
 	</ItemGroup>
 </Project>

@@ -223,6 +223,7 @@ void testApp::kinectUnplugged(){
 	bPlugged = false;
 }
 
+
 //--------------------------------------------------------------
 void testApp::keyReleased(int key){
 
